@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Savings Calculator</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+      .select-slider-container {
+        background-color: #f5f5f3;
+        padding: 4rem;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      .content-container {
+        background: rgb(33, 82, 75);
+        background: linear-gradient(
+          90deg,
+          rgba(33, 82, 75, 1) 0%,
+          rgba(31, 44, 43, 1) 50%,
+          rgba(61, 47, 90, 1) 100%
+        );
+        color: aliceblue;
+        height: 420px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 5px;
+        padding: 2rem;
+      }
+      .range-slider-container {
+        width: 70%;
+        margin: 0 auto;
+        text-align: center;
+        font-family: "Arial", sans-serif;
+      }
+
+      .range-slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 5px;
+        border-radius: 5px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        cursor: pointer;
+      }
+
+      .range-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: black;
+        cursor: pointer;
+        transition: box-shadow 0.2s;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+      }
+
+      .range-slider::-webkit-slider-thumb:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .range-slider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: black;
+        cursor: pointer;
+        transition: box-shadow 0.2s;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+      }
+
+      .range-slider::-moz-range-thumb:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .savings-description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .savings-description-text {
+        font-size: 16px;
+      }
+      .total-savings {
+        font-size: 2rem;
+        font-weight: 500;
+        text-align: center;
+      }
+      .total-savings span {
+        font-size: 3rem;
+      }
+      .savings-table {
+        border-collapse: collapse;
+      }
+      .savings-table th,
+      .savings-table td {
+        padding: 8px;
+        font-size: 12px;
+        text-align: left;
+      }
+      .custom-select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #fff;
+        color: #333;
+        outline: none;
+      }
+
+      .custom-select:hover {
+        background-color: #f5f5f5;
+      }
+
+      .custom-select:hover option {
+        background-color: #f5f5f5;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          font-size: 14px;
+        }
+
+        .select-slider-container {
+          padding: 2rem;
+        }
+
+        .savings-description-text {
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          font-size: 12px;
+        }
+        .select-slider-container {
+          padding: 1rem;
+        }
+
+        .savings-description-text {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="select-slider-container">
+        <div>
+          <p>How many hours a month do you spend culling?</p>
+          <p><span id="culling-hours">10</span> hours</p>
+        </div>
+        <input
+          type="range"
+          min="4"
+          max="8"
+          value="3"
+          class="range-slider"
+          id="myRange"
+        />
+        <div>
+          <p>What do you earn from photography yearly?</p>
+          <select class="custom-select" id="earning">
+            <option value="25000">$25,000</option>
+            <option value="50000">$50,000</option>
+            <option value="75000">$75,000</option>
+            <option value="100000">$100,000</option>
+            <option value="150000">$150,000</option>
+            <option value="200000">$200,000</option>
+            <option value="300000">$300,000</option>
+          </select>
+        </div>
+      </div>
+      <div class="content-container">
+        <div class="savings-description">
+          <p class="savings-description-text">
+            Yearly return on investment using FilterPixel:
+          </p>
+          <p class="total-savings">$<span id="savings-amount">10,000</span></p>
+          <p>and <span id="work-days">5.5</span> work days</p>
+        </div>
+        <div class="savings-table">
+          <table class="savings-table">
+            <tr>
+              <td>% Time Saved After Switching to FilterPixel</td>
+              <td id="time-saved">80%</td>
+            </tr>
+            <tr>
+              <td>Cost of Select Pro Annual Subscription</td>
+              <td id="subscription-cost">$122.29</td>
+            </tr>
+            <tr>
+              <td>Value of Time Saved</td>
+              <td id="time-saved-value">$2,500</td>
+            </tr>
+
+            <tr>
+              <td>Total Saved</td>
+              <td id="total-saved">$10,860</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const rangeSlider = document.getElementById("myRange");
+    const earning = document.getElementById("earning");
+    const cullingHours = document.getElementById("culling-hours");
+    const savingsAmount = document.getElementById("savings-amount");
+    const workDays = document.getElementById("work-days");
+    const timeSaved = document.getElementById("time-saved");
+    const timeSavedValue = document.getElementById("time-saved-value");
+    const subscriptionCost = document.getElementById("subscription-cost");
+    const totalSaved = document.getElementById("total-saved");
+
+    rangeSlider.addEventListener("input", updateValues);
+    earning.addEventListener("change", updateValues);
+
+    function updateValues() {
+      const hours = rangeSlider.value;
+      const hourlyRate = earning.value / (52 * 30);
+      const percentageSaved = 80;
+      const costPerYear = 122.29;
+
+      console.log({
+        hours,
+        hourlyRate,
+        percentageSaved,
+        costPerYear,
+      });
+
+      cullingHours.textContent = hours;
+
+      savingsAmount.textContent = (
+        (percentageSaved / 100) *
+        (hours * 12) *
+        hourlyRate
+      ).toFixed(0);
+
+      console.log(savingsAmount);
+
+      workDays.textContent = (hours * 12 * (percentageSaved / 100)).toFixed(2);
+      timeSaved.textContent = percentageSaved + "%";
+
+      timeSavedValue.textContent = (
+        (percentageSaved / 100) *
+        hours *
+        hourlyRate
+      ).toFixed();
+
+      subscriptionCost.textContent = costPerYear;
+
+      totalSaved.textContent = (
+        savingsAmount.textContent - costPerYear
+      ).toFixed();
+    }
+
+    updateValues();
+  </script>
+</html>
