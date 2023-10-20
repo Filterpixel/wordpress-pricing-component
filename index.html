@@ -259,20 +259,20 @@
 
       console.log(savingsAmount);
 
-      workDays.textContent = (hours * 12 * (percentageSaved / 100)).toFixed(2);
+      workDays.textContent = (hours * 12 * (percentageSaved / 100)).toFixed(0);
       timeSaved.textContent = percentageSaved + "%";
 
       timeSavedValue.textContent = (
         (percentageSaved / 100) *
         hours *
         hourlyRate
-      ).toFixed();
+      ).toFixed(0);
 
       subscriptionCost.textContent = costPerYear;
 
       totalSaved.textContent = (
         savingsAmount.textContent - costPerYear
-      ).toFixed();
+      ).toFixed(0);
     }
 
     updateValues();
