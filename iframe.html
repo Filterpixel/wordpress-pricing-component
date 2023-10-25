@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="pricing-custom-media.css"> -->
+    <title>Document</title>
+  </head>
+  <body>
+    <iframe src="http://127.0.0.1:5500/index.html" id="custom-pricing-css-0109"></iframe>
+  </body>
+  <script>
+    let iframe = document.getElementById('custom-pricing-css-0109');
+    function resizeIframe() {
+       console.log(window.innerWidth);
+        if (window.innerWidth <= 800) {
+            iframe.style.width = '100%';
+            iframe.style.height = '700px';
+        } else {
+            iframe.style.width = '800px';
+            iframe.style.height = '400px';
+        }
+    }
+    window.addEventListener('resize', resizeIframe);
+    resizeIframe();
+</script>
+</html>
